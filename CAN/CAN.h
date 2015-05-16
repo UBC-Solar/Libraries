@@ -174,6 +174,12 @@ public:
 	
 	static bool buffer0DataWaiting();
 	static bool buffer1DataWaiting();
+
+	// UBC Solar additions
+	static byte readRegister(byte addr);
+	static bool TX0Busy();
+	static bool TX1Busy();
+	static bool TX2Busy();
 };
 extern CANClass CAN;
 #endif

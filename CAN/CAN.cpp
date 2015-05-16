@@ -353,3 +353,24 @@ bool CANClass::buffer1DataWaiting() {
 	return ((CAN.readStatus() & 0x80) == 0x80);
 }
 
+byte CANClass::readRegister(byte addr) {
+	byte value;
+	digitalWrite(SS_PIN, LOW);
+	SPI.transfer(READ);
+	SPI.transfer(addr);
+	value = SPI.transfer(0xFF);
+	digitalWrite(SS_PIN, HIGH);
+	return value;
+}
+
+bool CANClass::TX0Busy() {
+	return ((CAN.readRegister(TXB0CTRL) & 0x08) == 0x08);
+}
+
+bool CANClass::TX1Busy() {
+	return ((CAN.readRegister(TXB1CTRL) & 0x08) == 0x08);
+}
+
+bool CANClass::TX2Busy() {
+	return ((CAN.readRegister(TXB2CTRL) & 0x08) == 0x08);
+}
