@@ -251,7 +251,7 @@ void CANClass::load_ff(byte txbuf, byte length, uint32_t *id, byte *data, bool e
 		SPI.transfer(data[i]);
 	}
 	digitalWrite(SS_PIN, HIGH);
-	delay(50);
+	delay(1);
 	digitalWrite(SS_PIN, LOW);
 	SPI.transfer(send_cmd);
 	digitalWrite(SS_PIN, HIGH);
